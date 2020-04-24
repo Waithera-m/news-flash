@@ -1,0 +1,20 @@
+# Editor
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+
+
+virtual/
+
+*.pyc
+
+# Environment
+.venv
+
+# Flask zeug
+instance/
+
+start.sh
+
