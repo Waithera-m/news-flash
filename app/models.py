@@ -23,4 +23,27 @@ class Item:
         self.publishedAt = publishedAt
         self.description = description
         self.url = url
+
+class Source:
+
+    '''
+    Class defines source objects
+    '''
+    def __init__(self,id,name,description,url):
+
+        '''
+        Method facilitates the definition of objects' properties
+
+        Args:
+            id (str): news source id
+            name (str): news source name
+            description (str): news source description
+            url (str): link to news source home page
+        '''
+        self.id = id
+        self.name = name 
+        self.description =  description
+        self.url = url
+        
+
         

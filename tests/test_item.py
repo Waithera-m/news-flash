@@ -4,7 +4,7 @@ from app.models import Item
 class ItemTest(unittest.TestCase):
 
     '''
-    Class tests Item class behavior
+    Tests Item class behavior
     '''
     def setUp(self):
 
@@ -16,7 +16,7 @@ class ItemTest(unittest.TestCase):
     def test_instance(self):
 
         '''
-        Function to test object initialization
+        Function tests object initialization
         '''
         self.assertTrue(isinstance(self.new_item,Item))
 
