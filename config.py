@@ -6,9 +6,9 @@ class Config:
     Class creates Config objects
     '''
     #set environment variables
-    BASE_URL = 'http://newsapi.org/v2/{}&apiKey={}'
-    NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    BASE_URL = "https://newsapi.org/v2/sources?apiKey={}"
+    NEWS_API_KEY = os.environ['NEWS_API_KEY']
+    SECRET_KEY = os.environ['SECRET_KEY']
 
 class ProdConfig(Config):
 
@@ -17,7 +17,7 @@ class ProdConfig(Config):
     '''
     pass
 
-class DevConfig:
+class DevConfig(Config):
 
     '''
     Function inherits general configurations from Config class

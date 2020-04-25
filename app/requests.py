@@ -1,8 +1,9 @@
-import  urllib.request,json
+from app import create_app
+import urllib.request,json
 from .models import Item,Source
 
 #get api key and base url and set value to none
-api_key = None
+apiKey = None
 base_url = None
 
 #change the values of api_key and base_url variables
@@ -11,21 +12,24 @@ def configure_request(app):
     '''
     Function assigns the values defined in app configuration objects to the api_key and base_url variables
     '''
-    global api_key, base_url
-    api_key = app.config['NEWS_API_KEY']
-    base_url = app.config['BASE_URL']
+    global apiKey,base_url
 
-def get_sources(source):
-    #change this to get articles function
+    apiKey = app.config['NEWS_API_KEY']
+    base_url = app.config['BASE_URL']
+    
+    
+    
+
+def get_sources():
 
     '''
     Function gets different news sources
     '''
-    get_sources_url = base_url.format(source,api_key)
+    sources_url = base_url.format(apiKey)
 
-    with urllib.request.urlopen(get_sources_url) as url:
+    with urllib.request.urlopen(sources_url) as url:
         get_sources_data = url.read()
-        get_sources_response = json.load(get_sources_data)
+        get_sources_response = json.loads(get_sources_data)
 
         if get_sources_response['sources']:
             sources_results_list = get_sources_response['sources']  
