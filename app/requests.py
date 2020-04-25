@@ -64,3 +64,22 @@ def modify_results(sources_list):
             sources_results.append(source_object)
                   
     return sources_results
+
+def get_headlines(category):
+
+    '''
+    Function gets top headlines from multiple sources
+    '''
+    headlines_url = base_url.format(category,apiKey)
+
+    with urllib.request.urlopen(headlines_url) as url:
+        get_headlines_data = url.read()
+        get_headlines_response = json.loads(get_headlines_data)
+
+        headlines_results = None
+
+        if get_headlines_response['sources']:
+            headlines_results_list = get_headlines_response['sources']  
+            headlines_results = modify_results(headlines_results_list)
+
+    return headlines_results
