@@ -3,6 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h2>{{source.name}}</h2>
+                <h4>ID: {{source.id}}</h4>
                 <p>{{source.description | truncate(100)}}</p>
                 <a href="{{source.url}}" target="_blank" class="badge badge-primary">Visit News Site</a>
             </div>
@@ -20,7 +21,7 @@
             <div class="card-body">
                 <h5><i>{{headline.publishedAt | truncate(13)}}</i></h5>
                 <a href="{{headline.url}}" target="_blank">Read Full Article</a>
-                <p>{{headline.description | truncate(150)}}</p>
+                <p>{{headline.description}}</p>
             </div>
         </div>
     {% endfor %}
