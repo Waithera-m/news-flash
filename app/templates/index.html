@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% import 'macros.html' as macro %}
 
+
 {% block title %}{{title}}{% endblock %}
 
 {% block styles %}
@@ -17,14 +18,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h1 style="font-style: normal;">News Sources</h1>
+            <h2>News Sources</h2>
             <hr>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
             <div class="card mt-5" style="width: 20rem;">
                 {{macro.displaySourcesList(sources)}}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h2>Top Headlines</h2>
+            <hr>
+            <div>
+                {{macro.displayHeadlinesResults(headlines)}}
             </div>
         </div>
     </div>

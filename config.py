@@ -7,8 +7,9 @@ class Config:
     '''
     #set environment variables
     BASE_URL = "https://newsapi.org/v2/{}?language=en&apiKey={}"
-    NEWS_API_KEY = os.environ['NEWS_API_KEY']
-    SECRET_KEY = os.environ['SECRET_KEY']
+    NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
+    print(NEWS_API_KEY)
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 class ProdConfig(Config):
 

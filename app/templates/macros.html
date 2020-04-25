@@ -9,3 +9,19 @@
         </div>
     {% endfor %}
 {% endmacro %}
+
+{% macro displayHeadlinesResults(headlines_list) %}
+    {% for headline in headlines_list %}
+        <div class="card">
+            <div class="card-title">
+                <h3><i>{{headline.title}}</i></h3>
+                <h5><i>{{headline.author}}</i></h5>
+            </div>
+            <div class="card-body">
+                <h5><i>{{headline.publishedAt | truncate(13)}}</i></h5>
+                <a href="{{headline.url}}" target="_blank">Read Full Article</a>
+                <p>{{headline.description | truncate(150)}}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}

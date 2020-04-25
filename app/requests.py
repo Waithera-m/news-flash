@@ -78,8 +78,37 @@ def get_headlines(category):
 
         headlines_results = None
 
-        if get_headlines_response['sources']:
-            headlines_results_list = get_headlines_response['sources']  
-            headlines_results = modify_results(headlines_results_list)
+        if get_headlines_response['articles']:
+            headlines_results_list = get_headlines_response['articles']  
+            headlines_results = process_results(headlines_results_list)
 
     return headlines_results
+
+def process_results(headlines_list):
+
+    '''
+    Function converts received data into a list
+
+    Args:
+        headlines_list: list of dictionaries that contain articles' details
+    
+    Returns:
+        headlines_results: a list of article objects
+    '''
+
+    headlines_results = []
+
+    for headline_item in headlines_list:
+        author = headline_item.get('author')
+        title = headline_item.get('title')
+        publishedAt = headline_item.get('publishedAt')
+        description = headline_item.get('description')
+        url = headline_item.get('url')
+
+        if title:
+            headline_object = Item(author,title,publishedAt,description,url)
+            headlines_results.append(headline_object)
+
+    return headlines_results
+
+    
