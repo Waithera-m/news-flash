@@ -15,9 +15,14 @@
     <p><i>On the go</i></p>
 </div>
 <div class="container">
-    <h1>News Sources</h1>
-    <div>
-        {{ macro.displaySourcesList(sources) }}
+    <h1 style="font-style: normal;">News Sources</h1>
+    <hr>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card mt-5" style="width: 20rem;">
+                {{macro.displaySourcesList(sources)}}
+            </div>
+        </div>
     </div>
 </div>
 

@@ -6,7 +6,7 @@ class Config:
     Class creates Config objects
     '''
     #set environment variables
-    BASE_URL = "https://newsapi.org/v2/{}?apiKey={}"
+    BASE_URL = "https://newsapi.org/v2/{}?language=en&apiKey={}"
     NEWS_API_KEY = os.environ['NEWS_API_KEY']
     SECRET_KEY = os.environ['SECRET_KEY']
 
