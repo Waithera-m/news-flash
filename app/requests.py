@@ -20,16 +20,18 @@ def configure_request(app):
     
     
 
-def get_sources():
+def get_sources(category):
 
     '''
     Function gets different news sources
     '''
-    sources_url = base_url.format(apiKey)
+    sources_url = base_url.format(category,apiKey)
 
     with urllib.request.urlopen(sources_url) as url:
         get_sources_data = url.read()
         get_sources_response = json.loads(get_sources_data)
+
+        sources_results = None
 
         if get_sources_response['sources']:
             sources_results_list = get_sources_response['sources']  
@@ -44,21 +46,21 @@ def modify_results(sources_list):
     Function processes the received data and transforms it into a list
 
     Args:
-        movie_list: List of dictionaries that contain news sources' details
+        sources_list: List of dictionaries that contain news sources' details
     
     Returns:
-        source_results: a list of news sources objects
+        sources_results: a list of news sources objects
     '''
 
-    source_results = []
-    for source in sources_list:
-        id = source.get('id')
-        name = source.get('name')
-        description = source.get('description')
-        url = source.get('url')
+    sources_results = []
+    for source_item in sources_list:
+        id = source_item.get('id')
+        name = source_item.get('name')
+        description = source_item.get('description')
+        url = source_item.get('url')
 
         if id:
             source_object = Source(id,name,description,url)
-            source_results.append(source_object)
+            sources_results.append(source_object)
                   
-    return source_results
+    return sources_results

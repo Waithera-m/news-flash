@@ -8,5 +8,6 @@ def index():
     '''
     View function, which returns the index page and its contents
     '''
-    news_sources = get_sources()
-    return render_template('index.html',news_sources=news_sources)
+    news_sources = get_sources('sources')
+    title = 'News-Flash'
+    return render_template('index.html',title=title,sources=news_sources)

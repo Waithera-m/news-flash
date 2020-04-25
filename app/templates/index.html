@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% import 'macros.html' as macro %}
 
-{% block title %}News-Flash{% endblock %}
+{% block title %}{{title}}{% endblock %}
 
 {% block styles %}
     {{super()}}
@@ -14,9 +15,10 @@
     <p><i>On the go</i></p>
 </div>
 <div class="container">
-    {% for news_source in source %}
-        <li>{{news_source.name}}</li>
-    {% endfor %}
+    <h1>News Sources</h1>
+    <div>
+        {{ macro.displaySourcesList(sources) }}
+    </div>
 </div>
 
 {% endblock %}
