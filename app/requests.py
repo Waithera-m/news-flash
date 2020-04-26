@@ -7,6 +7,7 @@ from functools import reduce
 apiKey = None
 base_url = None
 articles_url = None
+topics_url = None
 
 #change the values of api_key and base_url variables
 def configure_request(app):
@@ -14,11 +15,12 @@ def configure_request(app):
     '''
     Function assigns the values defined in app configuration objects to the api_key and base_url variables
     '''
-    global apiKey,base_url,articles_url
+    global apiKey,base_url,articles_url,topics_url
 
     apiKey = app.config['NEWS_API_KEY']
     base_url = app.config['BASE_URL']
     articles_url = app.config['ARTICLES_URL']
+    topics_url = app.config['TOPICS_URL']
     #print(articles_url)
     
     
@@ -172,5 +174,56 @@ def process_results(headlines_list):
             headlines_results.append(headline_object)
 
     return headlines_results
+
+def get_topics(topic):
+
+    '''
+    Function gets and returns topical articles
+    '''
+    topical_url = topics_url.format(topic,apiKey)
+    with urllib.request.urlopen(topical_url) as url:
+        topic_details_data = url.read()
+        topic_response = json.loads(topic_details_data)
+
+        topic_results = None
+        if topic_response['articles']:
+            topic_results_list = topic_response['articles']
+            topic_results = modify_articles(topic_results_list)
+
+    return topic_results
+
+def modify_articles(topic_list):
+
+    '''
+    function transforms response into a list
+
+    Args:
+        topic_list: a list of of dictionaries
+    
+    Returns:
+        topic_results: a list of article objects
+    '''
+    topic_results = []
+    for article in topic_list:
+        def deep_get(dictionary, keys, default=None):
+            
+            '''
+            Function gets value from nested dictionary
+            '''            
+            return reduce(lambda d, key: d.get(key, default) if isinstance(d, dict) else default, keys.split("."), dictionary)
+        id = deep_get(article, "source.id")
+        author = article['author']
+        title = article['title']
+        publishedAt = article['publishedAt']
+        description = article['content']
+        url = article['url']
+        image = article['urlToImage']
+        if title:
+            article_object = Article(id,author,title,publishedAt,description,url,image)
+            topic_results.append(article_object)
+        return topic_results
+
+
+
 
     

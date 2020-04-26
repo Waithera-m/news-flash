@@ -3,7 +3,6 @@
         <div class="card">
             <div class="card-body">
                 <h2>{{source.name}}</h2>
-                <h4>ID: {{source.id}}</h4>
                 <p>{{source.description | truncate(100)}}</p>
                 <a href="{{source.url}}" target="_blank" class="badge badge-primary">Visit News Site</a>
                 <a href="/source/{{source.id}}">View Articles</a>
@@ -30,6 +29,22 @@
 
 {% macro displaySourceArticles(articles_list) %}
         {% for article in articles_list %}
+        <div class="card">
+            <div class="card-title"><h4><strong>{{article.title}}</strong></h4></div>
+            <div class="card-image">
+                <img src="{{article.image}}" class="img-responsive">
+            </div>
+            <div class="card-title">
+                <h5><i>{{article.publishedAt | truncate(13)}}</i></h5>
+                <p>{{article.description | truncate(150)}}</p>
+                <a href="{{article.url}}" target="_blank">Read Full Article</a>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+{% endmacro %}
+{% macro displayTopicalArticles(topic_list) %}
+        {% for article in topic_list %}
         <div class="card">
             <div class="card-title"><h4><strong>{{article.title}}</strong></h4></div>
             <div class="card-image">

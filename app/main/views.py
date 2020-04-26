@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for
 
 from . import main
-from ..requests import get_sources,get_headlines,get_source_articles
+from ..requests import get_sources,get_headlines,get_source_articles,get_topics
 
 @main.route('/')
 def index():
@@ -34,3 +34,13 @@ def source(id):
     
 
     return render_template('source.html',id = id)
+
+@main.route('/coronavirus')
+def coronavirus():
+
+    '''
+    View function returns view that has articles on coronavirus
+    '''
+    coronavirus_list = get_topics('coronavirus')
+    return render_template('coronavirus.html',coronavirus = coronavirus_list)
+    
