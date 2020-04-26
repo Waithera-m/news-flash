@@ -1,6 +1,7 @@
 from app import create_app
 import urllib.request,json
-from .models import Item,Source
+from .models import Item,Source,Article
+from functools import reduce
 
 #get api key and base url and set value to none
 apiKey = None
@@ -73,7 +74,10 @@ def get_source_articles(id):
     '''
               
     #http://newsapi.org/v2/top-headlines?sources={}&apiKey={}
+    # id = "abc-news"
     get_articles_url = articles_url.format(id,apiKey)
+    # print(get_articles_url)
+    # print('hello')
     
 
     with urllib.request.urlopen(get_articles_url) as url:
@@ -82,8 +86,8 @@ def get_source_articles(id):
 
         articles_results = None
         if articles_response['articles']:
-            articles_list = articles_response['articles']
-            articles_results = transform_articles(articles_list)
+            articles_results_list = articles_response['articles']
+            articles_results = transform_articles(articles_results_list)
 
     return articles_results
 
@@ -96,20 +100,27 @@ def transform_articles(articles_list):
         articles_list: a list of of dictionaries
     
     Returns:
-        articles_results: alist of article objects
+        articles_results: a list of article objects
     '''
     articles_results = []
 
-    for article in articles_list:
-        author = article.get('author')
-        title = article.get('title')
-        publishedAt = article.get('publishedAt')
-        description = article.get('description')
-        url = article.get('url')
+    for article_item in articles_list:
+        def deep_get(dictionary, keys, default=None):
+            
+            '''
+            Function gets value from nested dictionary
+            '''            
+            return reduce(lambda d, key: d.get(key, default) if isinstance(d, dict) else default, keys.split("."), dictionary)
+        id = deep_get(article_item, "source.id")
+        author = article_item['author']
+        title = article_item['title']
+        publishedAt = article_item['publishedAt']
+        description = article_item['description']
+        url = article_item['url']
 
         if title:
-            articles_object = Item(author,title,publishedAt,description,url)
-            articles_results.append(articles_object)
+            article_object = Article(id,author,title,publishedAt,description,url)
+            articles_results.append(article_object)
 
     return articles_results
 

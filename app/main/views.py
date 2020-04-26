@@ -28,7 +28,7 @@ def source(id):
     '''
     View function returns source details page
     '''
-    id = get_source_articles('id')
+    id = get_source_articles(id)
     
 
     return render_template('source.html',id = id)

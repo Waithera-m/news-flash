@@ -44,5 +44,35 @@ class Source:
         self.description =  description
         self.url = url
         
+class Article:
+    '''
+    Class defines article objects
+
+    Args:
+        id (str): source id
+        author (str): article's author 
+        title (str): article's title
+        publishedAt (str): article publication date
+        description (str): brief description of article content
+        url (str): link to full article
+    '''
+    def __init__(self,id,author,title,publishedAt,description,url):
+
+        '''
+        Method facilitates the definition of objects; properties
+
+        Args:
+            author (str): article's author 
+            title (str): article's title
+            publishedAt (str): article publication date
+            description (str): brief description of article content
+            url (str): link to full article
+        '''
+        self.id = id
+        self.author = author
+        self.title = title
+        self.publishedAt = publishedAt
+        self.description = description
+        self.url = url
 
         
