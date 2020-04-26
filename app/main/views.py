@@ -1,5 +1,5 @@
-from flask import render_template,request,redirect,url_for,session
-from markupsafe import escape
+from flask import render_template,request,redirect,url_for
+
 from . import main
 from ..requests import get_sources,get_headlines,get_source_articles
 

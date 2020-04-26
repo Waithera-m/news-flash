@@ -122,7 +122,6 @@ def transform_articles(articles_list):
         if title:
             article_object = Article(id,author,title,publishedAt,description,url,image)
             articles_results.append(article_object)
-        
     return articles_results
 
         

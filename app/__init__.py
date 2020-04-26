@@ -1,10 +1,10 @@
 from flask import Flask
-from flask_session import Session
+
 from flask_bootstrap import Bootstrap
 from config import config_options
 
 boostrap = Bootstrap()
-sess = Session()
+
 
 def create_app(config_name):
 
@@ -19,7 +19,7 @@ def create_app(config_name):
     app.config.from_object(config_options[config_name])
     
     #initialize session
-    sess.init_app(app)
+    
 
     #initialize flask extensions
     boostrap.init_app(app)
