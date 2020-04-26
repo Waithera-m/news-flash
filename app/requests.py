@@ -117,9 +117,10 @@ def transform_articles(articles_list):
         publishedAt = article_item['publishedAt']
         description = article_item['description']
         url = article_item['url']
+        image = article_item['urlToImage']
 
         if title:
-            article_object = Article(id,author,title,publishedAt,description,url)
+            article_object = Article(id,author,title,publishedAt,description,url,image)
             articles_results.append(article_object)
 
     return articles_results

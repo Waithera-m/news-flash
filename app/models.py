@@ -56,7 +56,7 @@ class Article:
         description (str): brief description of article content
         url (str): link to full article
     '''
-    def __init__(self,id,author,title,publishedAt,description,url):
+    def __init__(self,id,author,title,publishedAt,description,url,urlToImage):
 
         '''
         Method facilitates the definition of objects; properties
@@ -67,6 +67,7 @@ class Article:
             publishedAt (str): article publication date
             description (str): brief description of article content
             url (str): link to full article
+            urlToImage: link to story's photo
         '''
         self.id = id
         self.author = author
@@ -74,5 +75,6 @@ class Article:
         self.publishedAt = publishedAt
         self.description = description
         self.url = url
+        self.urlToImage = urlToImage
 
         
