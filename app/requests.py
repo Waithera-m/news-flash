@@ -115,7 +115,7 @@ def transform_articles(articles_list):
         author = article_item['author']
         title = article_item['title']
         publishedAt = article_item['publishedAt']
-        description = article_item['description']
+        description = article_item['content']
         url = article_item['url']
         image = article_item['urlToImage']
 

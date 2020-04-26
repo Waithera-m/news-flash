@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macro %}
 
+{% block styles %}
+    {{super()}}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/source.css')}}">
+{% endblock%}
+
 {% block content %}
-<div class="container">
-    <div>{{macro.displaySourceArticles(id)}}</div>
+<div class="jumbotron">
+    <h1>News Articles</h1>
 </div>
+
+<div style="margin-left: 20px;">{{macro.displaySourceArticles(id)}}</div>
+
+
+
 {% endblock %}

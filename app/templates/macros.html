@@ -37,7 +37,7 @@
             </div>
             <div class="card-title">
                 <h5><i>{{article.publishedAt | truncate(13)}}</i></h5>
-                <p>{{article.description}}</p>
+                <p>{{article.description | truncate(150)}}</p>
                 <a href="{{article.url}}" target="_blank">Read Full Article</a>
             </div>
         </div>
