@@ -6,6 +6,7 @@
                 <h4>ID: {{source.id}}</h4>
                 <p>{{source.description | truncate(100)}}</p>
                 <a href="{{source.url}}" target="_blank" class="badge badge-primary">Visit News Site</a>
+                <a href="/source/{{source.id}}">View Articles</a>
             </div>
         </div>
     {% endfor %}
@@ -16,7 +17,7 @@
         <div class="card">
             <div class="card-title">
                 <h3><i>{{headline.title}}</i></h3>
-                <h5><i>{{headline.author}}</i></h5>
+                <!-- <h5><i>{{headline.author}}</i></h5> -->
             </div>
             <div class="card-body">
                 <h5><i>{{headline.publishedAt | truncate(13)}}</i></h5>
@@ -25,4 +26,17 @@
             </div>
         </div>
     {% endfor %}
+{% endmacro %}
+
+{% macro displaySourceArticles(articles_list) %}
+        {% for article in articles_list %}
+        <div class="card">
+            <div class="card-title"><h3><i>{{article.title}}</i></h3></div>
+            <div class="card-title">
+                <h5><i>{{article.publishedAt | truncate(13)}}</i></h5>
+                <p>{{article.description}}</p>
+                <a href="{{article.url}}" target="_blank">Read Full Article</a>
+            </div>
+        </div>
+        {% endfor %}
 {% endmacro %}

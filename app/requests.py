@@ -5,6 +5,7 @@ from .models import Item,Source
 #get api key and base url and set value to none
 apiKey = None
 base_url = None
+articles_url = None
 
 #change the values of api_key and base_url variables
 def configure_request(app):
@@ -12,11 +13,12 @@ def configure_request(app):
     '''
     Function assigns the values defined in app configuration objects to the api_key and base_url variables
     '''
-    global apiKey,base_url
+    global apiKey,base_url,articles_url
 
     apiKey = app.config['NEWS_API_KEY']
     base_url = app.config['BASE_URL']
-    
+    articles_url = app.config['ARTICLES_URL']
+    #print(articles_url)
     
     
 
@@ -64,6 +66,55 @@ def modify_results(sources_list):
             sources_results.append(source_object)
                   
     return sources_results
+def get_source_articles(id):
+
+    '''
+    Article gets and returns a given source's articles
+    '''
+              
+    #http://newsapi.org/v2/top-headlines?sources={}&apiKey={}
+    get_articles_url = articles_url.format(id,apiKey)
+    
+
+    with urllib.request.urlopen(get_articles_url) as url:
+        article_details_data = url.read()
+        articles_response = json.loads(article_details_data)
+
+        articles_results = None
+        if articles_response['articles']:
+            articles_list = articles_response['articles']
+            articles_results = transform_articles(articles_list)
+
+    return articles_results
+
+def transform_articles(articles_list):
+    
+    '''
+    Function transforsm received data into a list
+
+    Args:
+        articles_list: a list of of dictionaries
+    
+    Returns:
+        articles_results: alist of article objects
+    '''
+    articles_results = []
+
+    for article in articles_list:
+        author = article.get('author')
+        title = article.get('title')
+        publishedAt = article.get('publishedAt')
+        description = article.get('description')
+        url = article.get('url')
+
+        if title:
+            articles_object = Item(author,title,publishedAt,description,url)
+            articles_results.append(articles_object)
+
+    return articles_results
+
+        
+
 
 def get_headlines(category):
 
