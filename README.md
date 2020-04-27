@@ -22,8 +22,8 @@ To set up a local project:
 |Source page loads|Users click on read full article link|Users are directed to the sites where the articles are published|
 |The landing page loads|Users click on visit news site button|Users are directed to sources' websites|
 |The landing page loads|Users click on read full article link|Users are directed to the sites where the articles are published|
-|The landing page loads|Users use the navbar to naviagate to coronavirus page|Users see coronavirus-related articles|
-|The landing page loads|Users use the navbar to naviagate to about page|Users see details regarding what the site does|
+|The landing page loads|Users use the navbar to navigate to coronavirus page|Users see coronavirus-related articles|
+|The landing page loads|Users use the navbar to navigate to about page|Users see details regarding what the site does|
 ## Technologies Used
 * HTML - HTML dictates the structure of webpages.
 * CSS & Bootstrap - CSS determines the appearance of webpages. The styling language was used to add background images and colors and style the site's content.
