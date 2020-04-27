@@ -117,12 +117,12 @@ def transform_articles(articles_list):
         author = article_item['author']
         title = article_item['title']
         publishedAt = article_item['publishedAt']
-        description = article_item['content']
+        description = article_item['description']
         url = article_item['url']
-        image = article_item['urlToImage']
+        urlToImage = article_item['urlToImage']
 
-        if title:
-            article_object = Article(id,author,title,publishedAt,description,url,image)
+        if urlToImage:
+            article_object = Article(id,author,title,publishedAt,description,url,urlToImage)
             articles_results.append(article_object)
     return articles_results
 
@@ -215,11 +215,11 @@ def modify_articles(topic_list):
         author = article['author']
         title = article['title']
         publishedAt = article['publishedAt']
-        description = article['content']
+        description = article['description']
         url = article['url']
-        image = article['urlToImage']
+        urlToImage = article['urlToImage']
         if title:
-            article_object = Article(id,author,title,publishedAt,description,url,image)
+            article_object = Article(id,author,title,publishedAt,description,url,urlToImage)
             topic_results.append(article_object)
         return topic_results
 
