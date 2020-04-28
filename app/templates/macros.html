@@ -29,31 +29,25 @@
 
 {% macro displaySourceArticles(articles_list) %}
         {% for article in articles_list %}
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card" style="width: 100rem">
-                    <img src="{{article.urlToImage}}" class="card-img-top img-responsive" height=500 width=550>
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h4><strong>{{article.title}}</strong></h4>
-                        </div>
-                        <div class="card-text">
-                            <p>{{article.description | truncate(150)}}</p>
-                            <h5><i>{{article.publishedAt | truncate(13)}}</i></h5>
-                            <a href="{{article.url}}" target="_blank">Read Full Article</a>
-                        </div>
-                    </div>
+        <div class="card m-3" style="width: 70rem; float: left;">
+            <img src="{{article.urlToImage}}" class="card-img-top img-responsive" height=500 width=550>
+            <div class="card-body">
+                <div class="card-title">
+                    <h4><strong>{{article.title}}</strong></h4>
                 </div>
-                <hr>
+                <div class="card-text">
+                    <p>{{article.description | truncate(150)}}</p>
+                    <h5><i>{{article.publishedAt | truncate(13)}}</i></h5>
+                    <a href="{{article.url}}" target="_blank">Read Full Article</a>
+                </div>
             </div>
         </div>
-        
-        
+        <hr>
         {% endfor %}
 {% endmacro %}
 {% macro displayTopicalArticles(topic_list) %}
         {% for article in topic_list %}
-        <div class="card" style="width: 100rem">
+        <div class="card m-3 float-left" style="width: 50rem">
             <img src="{{article.urlToImage}}" class="card-img-top img-responsive" height=500 width=550>
             <div class="card-body">
                 <div class="card-title">
